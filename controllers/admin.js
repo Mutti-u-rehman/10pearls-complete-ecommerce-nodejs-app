@@ -14,7 +14,18 @@ exports.postAddProduct = (req, res, next) => {
   const price = req.body.price;
   const description = req.body.description;
 
-  Product.create({
+  /**
+   * This is function sequelize provide when we set associations
+   * it replica of this funciton 
+   * Product.create({
+   *   title: title,
+   *   price: price,
+   *   imageUrl: imageUrl,
+   *   description: description,
+   *   userId: req.user.id
+   *  })
+   */
+  req.user.createProduct({
     title: title,
     price: price,
     imageUrl: imageUrl,
@@ -29,16 +40,17 @@ exports.postAddProduct = (req, res, next) => {
 exports.getEditProduct = (req, res, next) => {
   const editMode = req.query.edit;
   const prodId = req.params.productId;
-  Product.findByPk(prodId)
-  .then((product) => {
-    if (!product) {
+  req.user.getProducts({ where: { id: prodId}})
+  // Product.findByPk(prodId)
+  .then((products) => {
+    if (!products) {
       return res.redirect('/');
     }
     res.render('admin/edit-product', {
       pageTitle: 'Edit Product',
       path: '/admin/edit-product',
       editing: editMode,
-      product: product
+      product: products[0]
     });
   })
   .catch((err) => {
@@ -73,7 +85,7 @@ exports.postEditProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  Product.findAll()
+  req.user.getProducts()
   .then(products => {
     res.render('admin/products', {
       prods: products,

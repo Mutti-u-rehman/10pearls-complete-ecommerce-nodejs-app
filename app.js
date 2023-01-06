@@ -10,6 +10,8 @@ const shopRoutes = require('./routes/shop');
 
 const Product = require('./models/product');
 const User = require('./models/user');
+const Cart = require('./models/cart');
+const CartItem = require('./models/cart-item');
 
 const app = express();
 
@@ -46,8 +48,25 @@ Product.belongsTo(User, { constraints: true, onDelete: 'CASCADE'});
 User.hasMany(Product);
 
 /**
+ * Settng Association in cart table 
+ * here cart Schema will add UserId automatically
+ */
+User.hasOne(Cart);
+Cart.belongsTo(User);
+
+/**
+ * Defining cart association with Product and 
+ * also define where we define this information
+ * here we will cardId and productId in cartItem Schema 
+ */
+Cart.belongsToMany(Product, { through: CartItem});
+Product.belongsToMany(Cart, { through: CartItem});
+
+/**
  * this will create tables if not exsit with all associations as per models
  * also this will create User with default value if not exit any
+ * and also will add new cart enter while using user association and
+ * will add userId in cart Schema
  */
 sequelize
     .sync()  // .sync({ force: true}) if we want overwrite
@@ -61,6 +80,9 @@ sequelize
         return user;
     })
     .then(user => {
+        return user.createCart();
+    })
+    .then(cart => {
         app.listen(3000);
     })
     .catch(err => {

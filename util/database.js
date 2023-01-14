@@ -1,13 +1,16 @@
-const Sequelize = require('sequelize');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 
-const sequelize = new Sequelize(
-    'node-complete',
-    'root',
-    'Mughal1234',
-    { 
-        dialect: 'mysql',
-        host: 'localhost'
-    }
-);
+const uri = "mongodb+srv://CompleteNodeJS:SsNs9xxnW5gBVhbf@clustercompletenodejs.dwo4wft.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
-module.exports = sequelize;
+const mongoConnect = (callback) => {
+    console.log("connecting");
+    MongoClient.connect(uri)
+        .then((client) => {
+            console.log("Connected");
+            callback(client);
+        })
+        .catch((err) => console.log(err));
+}
+
+module.exports = mongoConnect;

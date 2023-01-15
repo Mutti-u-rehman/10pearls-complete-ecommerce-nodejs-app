@@ -1,6 +1,7 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
+const store = require('../secret');
 
-const uri = "mongodb+srv://CompleteNodeJS:SsNs9xxnW5gBVhbf@clustercompletenodejs.dwo4wft.mongodb.net/?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${store.userName}:${store.password}@clustercompletenodejs.dwo4wft.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 const mongoConnect = (callback) => {

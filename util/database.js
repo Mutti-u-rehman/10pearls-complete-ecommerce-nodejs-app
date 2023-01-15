@@ -1,6 +1,5 @@
 const { MongoClient } = require('mongodb');
-const store = require('../secret');
-
+const connectionString = process.env.ATLAS_URI;
 
 
 async function main() {
@@ -9,7 +8,7 @@ async function main() {
      * Connection URI. Update <username>, <password>, and <your-cluster-url> to reflect your cluster.
      * See https://docs.mongodb.com/ecosystem/drivers/node/ for more details
      */
-    const uri = `mongodb+srv://${store.userName}:${store.password}@clustercompletenodejs.dwo4wft.mongodb.net/?retryWrites=true&w=majority`;
+    const uri = connectionString;
 
     /**
      * The Mongo Client you will use to interact with your database

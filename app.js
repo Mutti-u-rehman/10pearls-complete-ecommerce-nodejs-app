@@ -1,6 +1,12 @@
+// Loads the configuration from config.env to process.env
+require('dotenv').config({ path: './config.env' });
+
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+
+// get MongoDB driver connection
+const dbo = require('./util/conn');
 
 // const errorController = require('./controllers/error');
 
@@ -8,7 +14,7 @@ const bodyParser = require('body-parser');
 // const shopRoutes = require('./routes/shop');
 const mongoConnect = require('./util/database');
 
-
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -36,7 +42,16 @@ app.use((req, res, next) => {
 
 // app.use(errorController.get404);
 
-mongoConnect((client) => {
-    console.log(client);
-    app.listen(3000);
+
+
+dbo.connectToServer(function (err) {
+    if (err) {
+        console.error(err);
+        process.exit();
+    }
+
+    // start express server
+    app.listen(PORT, () => {
+        console.log(`Server is running on port: ${PORT}`);
+    })
 });

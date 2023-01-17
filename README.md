@@ -4,6 +4,9 @@ This repository contains the sample application for the [MongoDB and Express.js 
 
 ![main workflow](https://github.com/mongodb-developer/mongodb-express-rest-api-example/actions/workflows/main.yml/badge.svg)
 
+## Start learning from Official MongoDB University
+Start learning from here: [MongoDB University](https://learn.mongodb.com/learning-paths/introduction-to-mongodb)
+
 ## How To Run
 
 1. You can follow the [Getting Started with Atlas](https://docs.atlas.mongodb.com/getting-started/) guide, to learn how to create a free Atlas account, create your first cluster and get your Connection String to the database. 

@@ -10,7 +10,7 @@ const dbo = require('./util/conn');
 
 // const errorController = require('./controllers/error');
 
-// const adminRoutes = require('./routes/admin');
+const adminRoutes = require('./routes/admin');
 // const shopRoutes = require('./routes/shop');
 const mongoConnect = require('./util/database');
 
@@ -37,7 +37,7 @@ app.use((req, res, next) => {
     //     console.log("Error caused at middleware on getting user", err);
     // });
 });
-// app.use('/admin', adminRoutes);
+app.use('/admin', adminRoutes);
 // app.use(shopRoutes);
 
 // app.use(errorController.get404);

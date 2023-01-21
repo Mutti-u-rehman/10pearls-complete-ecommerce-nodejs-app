@@ -6,13 +6,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 // get MongoDB driver connection
-const dbo = require('./util/conn');
+const dbo = require('./util/conn').mongoConnect;
 
 // const errorController = require('./controllers/error');
 
 const adminRoutes = require('./routes/admin');
 // const shopRoutes = require('./routes/shop');
-const mongoConnect = require('./util/database');
+const mongoConnect = require('./util/conn').mongoConnect;
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -36,6 +36,8 @@ app.use((req, res, next) => {
     // .catch(err => {
     //     console.log("Error caused at middleware on getting user", err);
     // });
+
+    next();
 });
 app.use('/admin', adminRoutes);
 // app.use(shopRoutes);

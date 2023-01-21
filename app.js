@@ -6,7 +6,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 // get MongoDB driver connection
-const dbo = require('./util/conn').mongoConnect;
+const dbo = require('./util/conn');
 
 // const errorController = require('./controllers/error');
 

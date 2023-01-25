@@ -1,4 +1,5 @@
 const Product = require('../models/product');
+const { getDb } = require('../util/conn');
 
 exports.getAddProduct = (req, res, next) => {
   res.render('admin/edit-product', {
@@ -13,6 +14,7 @@ exports.postAddProduct = (req, res, next) => {
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
   const description = req.body.description;
+  const product = new Product(title, price, description, imageUrl);
 
   /**
    * This is function sequelize provide when we set associations
@@ -25,17 +27,27 @@ exports.postAddProduct = (req, res, next) => {
    *   userId: req.user.id
    *  })
    */
-  req.user.createProduct({
-    title: title,
-    price: price,
-    imageUrl: imageUrl,
-    description: description
-  })
+  product
+  .save()
   .then((result) => {
     // will do 
+    console.log(result);
     res.redirect('/products');
   });
 };
+
+
+function save() {
+  const db = getDb();
+  return db.collection('product')
+  .insertOne(this)
+  .then(result => {
+    console.log(result);
+  })
+  .catch(err => {
+    console.log(err);
+  })
+}
 
 // exports.getEditProduct = (req, res, next) => {
 //   const editMode = req.query.edit;

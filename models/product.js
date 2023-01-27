@@ -20,7 +20,7 @@ class Product {
   }
 
   static fetchAll() {
-    
+    return db.collection('prodcuts').find({title: 'A book'});
   }
 }
 

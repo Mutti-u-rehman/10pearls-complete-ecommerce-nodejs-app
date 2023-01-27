@@ -19,6 +19,10 @@ class Product {
       });
   }
 
+  /**
+   * Fetching all prodcut one by one
+   * @returns Products
+   */
   static fetchAll() {
     return db.collection('prodcuts').find().toArray()
     .then(products => {

@@ -20,7 +20,13 @@ class Product {
   }
 
   static fetchAll() {
-    return db.collection('prodcuts').find({title: 'A book'});
+    return db.collection('prodcuts').find().toArray()
+    .then(products => {
+      return products;
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
 }
 

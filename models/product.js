@@ -24,6 +24,7 @@ class Product {
    * @returns Products
    */
   static fetchAll() {
+    const db = getDb();
     return db.collection('prodcuts').find().toArray()
     .then(products => {
       return products;

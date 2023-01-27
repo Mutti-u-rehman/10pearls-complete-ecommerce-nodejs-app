@@ -18,6 +18,10 @@ class Product {
         console.log(err);
       });
   }
+
+  static fetchAll() {
+    
+  }
 }
 
 module.exports = Product;

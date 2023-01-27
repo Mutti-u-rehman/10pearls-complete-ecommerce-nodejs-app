@@ -11,7 +11,7 @@ const dbo = require('./util/conn');
 // const errorController = require('./controllers/error');
 
 const adminRoutes = require('./routes/admin');
-// const shopRoutes = require('./routes/shop');
+const shopRoutes = require('./routes/shop');
 const mongoConnect = require('./util/conn').mongoConnect;
 
 const PORT = process.env.PORT || 3000;
@@ -40,7 +40,7 @@ app.use((req, res, next) => {
     next();
 });
 app.use('/admin', adminRoutes);
-// app.use(shopRoutes);
+app.use(shopRoutes);
 
 // app.use(errorController.get404);
 

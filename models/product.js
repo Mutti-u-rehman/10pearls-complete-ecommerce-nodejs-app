@@ -18,6 +18,21 @@ class Product {
         console.log(err);
       });
   }
+
+  /**
+   * Fetching all prodcut one by one
+   * @returns Products
+   */
+  static fetchAll() {
+    const db = getDb();
+    return db.collection('prodcuts').find().toArray()
+    .then(products => {
+      return products;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
 }
 
 module.exports = Product;

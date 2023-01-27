@@ -1,6 +1,7 @@
 const Product = require('../models/product');
+const { getDb } = require('../util/conn');
 
-exports.getAddProduct = (req, res, next) => {
+exports.getAddProduct = (req, res) => {
   res.render('admin/edit-product', {
     pageTitle: 'Add Product',
     path: '/admin/add-product',
@@ -9,33 +10,34 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.postAddProduct = (req, res, next) => {
+
   const title = req.body.title;
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
   const description = req.body.description;
+  const product = new Product(title, price, description, imageUrl);
 
-  /**
-   * This is function sequelize provide when we set associations
-   * it replica of this funciton 
-   * Product.create({
-   *   title: title,
-   *   price: price,
-   *   imageUrl: imageUrl,
-   *   description: description,
-   *   userId: req.user.id
-   *  })
-   */
-  req.user.createProduct({
-    title: title,
-    price: price,
-    imageUrl: imageUrl,
-    description: description
-  })
+  Product
+  .save()
   .then((result) => {
     // will do 
-    res.redirect('/products');
+    console.log("Product created:");
+    res.redirect('/admin/products');
   });
 };
+
+
+function save() {
+  const db = getDb();
+  return db.collection('product')
+  .insertOne(this)
+  .then(result => {
+    console.log(result);
+  })
+  .catch(err => {
+    console.log(err);
+  })
+}
 
 // exports.getEditProduct = (req, res, next) => {
 //   const editMode = req.query.edit;

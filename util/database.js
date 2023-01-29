@@ -1,11 +1,11 @@
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
+const connectionString = process.env.ATLAS_URI;
 
 let _db;
-const ATLAS_URI = '';
 
 const mongoConnect = callback => {
-  MongoClient.connect(ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  MongoClient.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(client => {
       console.log('Connected!');
       _db = client.db();

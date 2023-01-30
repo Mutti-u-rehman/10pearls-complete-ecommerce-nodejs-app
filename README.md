@@ -28,7 +28,7 @@ nodemon server
 Use at your own risk; not a supported MongoDB product
 
 
-### next what to do
+### what we are doing:
 1 - Mongodb Confile
 2 - Finish on Mongodb 
 3 - Rest apis

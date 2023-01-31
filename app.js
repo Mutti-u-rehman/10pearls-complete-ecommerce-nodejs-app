@@ -10,8 +10,8 @@ const bodyParser = require('body-parser');
 const mongoConnect = require('./util/database').mongoConnect;
 
 
-// const errorController = require('./controllers/error');
-// const adminRoutes = require('./routes/admin');
+const errorController = require('./controllers/error');
+const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
 const PORT = process.env.PORT || 3000;
@@ -39,9 +39,9 @@ app.use((req, res, next) => {
 
     next();
 });
-// app.use('/admin', adminRoutes);
+app.use('/admin', adminRoutes);
 app.use(shopRoutes);
-// app.use(errorController.get404);
+app.use(errorController.get404);
 
 mongoConnect(() => {
     app.listen(3000);

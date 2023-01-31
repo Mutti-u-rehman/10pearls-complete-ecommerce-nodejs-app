@@ -2,7 +2,8 @@
 
 This repository contains the sample application for the [MongoDB and Express.js NodeJs App tutorial](https://www.mongodb.com/languages/express-mongodb-rest-api-tutorial).
 
-![main workflow](https://github.com/mongodb-developer/mongodb-express-rest-api-example/actions/workflows/main.yml/badge.svg)
+<!-- ![main workflow](https://github.com/mongodb-developer/mongodb-express-rest-api-example/actions/workflows/main.yml/badge.svg) -->
+### WIP: Action workflow need to be set
 
 ## Start learning from Official MongoDB University
 Start learning from here: [MongoDB University](https://learn.mongodb.com/learning-paths/introduction-to-mongodb)
@@ -27,6 +28,14 @@ nodemon server
 
 Use at your own risk; not a supported MongoDB product
 
+
+## [Reference for Docs](https://www.mongodb.com/blog/post/quick-start-nodejs-mongodb-how-to-get-connected-to-your-database)
+
+
+## How to start
+0. Node 4.x or greater version [More Information](https://www.mongodb.com/docs/drivers/node/current/compatibility/)
+1. Install mongodb driver _npm install monodb_
+2. check instalation _npm list mongodb_ [More Information](https://www.mongodb.com/docs/drivers/node/current/?_ga=2.142495922.1072723283.1675189397-1171412455.1673550271&_gac=1.82334180.1674846622.Cj0KCQiAic6eBhCoARIsANlox84Id4PAvBuPnuaWmSYOQs9WnyQ28Q9wmnEUy1p7jfsUujpjDsAsTCYaAs6NEALw_wcB)
 
 ### what we are doing:
 1 - Mongodb Confile

@@ -28,6 +28,7 @@ nodemon server
 
 Use at your own risk; not a supported MongoDB product
 
+
 ## [Reference for Docs](https://www.mongodb.com/blog/post/quick-start-nodejs-mongodb-how-to-get-connected-to-your-database)
 
 
@@ -36,3 +37,7 @@ Use at your own risk; not a supported MongoDB product
 1. Install mongodb driver _npm install monodb_
 2. check instalation _npm list mongodb_ [More Information](https://www.mongodb.com/docs/drivers/node/current/?_ga=2.142495922.1072723283.1675189397-1171412455.1673550271&_gac=1.82334180.1674846622.Cj0KCQiAic6eBhCoARIsANlox84Id4PAvBuPnuaWmSYOQs9WnyQ28Q9wmnEUy1p7jfsUujpjDsAsTCYaAs6NEALw_wcB)
 
+### what we are doing:
+1 - Mongodb Confile
+2 - Finish on Mongodb 
+3 - Rest apis

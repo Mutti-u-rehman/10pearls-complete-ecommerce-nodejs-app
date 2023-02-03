@@ -24,7 +24,7 @@ class Product {
    static async fetchAll() {
     const client = getDb();
     // const lsDBs = await client.db.admin().listDatabases();
-    const collections = await client.db('completeNodeJs').collections('products');
+    const collections = await client.db('completeNodeJs').collections('products').find({});
     console.log(collections);
     return [];
     return client

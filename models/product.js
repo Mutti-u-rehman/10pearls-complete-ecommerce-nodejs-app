@@ -21,9 +21,14 @@ class Product {
       });
   }
 
-  static fetchAll() {
-    const db = getDb();
-    return db
+   static async fetchAll() {
+    const client = getDb();
+    // const lsDBs = await client.db.admin().listDatabases();
+    const collections = await client.db('completeNodeJs').collection('products').find().toArray();
+    console.log(collections);
+    return [];
+    return client
+      .db()
       .collection('products')
       .find()
       .toArray()

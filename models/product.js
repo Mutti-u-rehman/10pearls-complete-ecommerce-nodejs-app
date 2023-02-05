@@ -26,7 +26,7 @@ class Product {
     // const lsDBs = await client.db.admin().listDatabases();
     const collections = await client.db('completeNodeJs').collection('products').find().toArray();
     console.log(collections);
-    return [];
+    return collections;
     return client
       .db()
       .collection('products')

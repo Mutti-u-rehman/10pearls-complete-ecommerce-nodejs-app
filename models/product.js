@@ -1,3 +1,5 @@
+const { resolve } = require('path');
+
 const getDb = require('../util/database').getDb;
 
 class Product {
@@ -9,8 +11,8 @@ class Product {
   }
 
   save() {
-    const db = getDb();
-    return db
+    const client = getDb();
+    return client
       .collection('products')
       .insertOne(this)
       .then(result => {
@@ -23,8 +25,6 @@ class Product {
 
    static async fetchAll() {
     const client = getDb();
-    // const lsDBs = await client.db.admin().listDatabases();
-    
     return client
       .db('completeNodeJs')
       .collection('products')

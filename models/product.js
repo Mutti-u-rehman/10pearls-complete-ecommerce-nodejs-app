@@ -12,7 +12,7 @@ class Product {
     this.price = price;
     this.description = description;
     this.imageUrl = imageUrl;
-    this._id = id;
+    this._id = new ObjectId(id);
   }
 
   /**
@@ -21,13 +21,12 @@ class Product {
    * update or add product
    */
   save() {
-    console.log(this);
     const _db = getDb();
     let dbOp = _db.collection('products'); // db options
 
     if (this._id) {
       // update the product
-      dbOp = dbOp.updateOne({_id: new ObjectId(this._id)}, {$set: this});
+      dbOp = dbOp.updateOne({_id: this._id}, {$set: this});
     } else {
       dbOp = dbOp.insertOne(this);
     }

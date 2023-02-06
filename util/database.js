@@ -2,7 +2,7 @@ const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
 const connectionString = process.env.ATLAS_URI;
 
-let _db_client;
+let _db;
 
 const mongoConnect = (callback) => {
   MongoClient.connect(connectionString, {
@@ -11,7 +11,7 @@ const mongoConnect = (callback) => {
   })
     .then((client) => {
       console.log("Connected!");
-      _db_client = client;
+      _db = client.db('completeNodeJs');
       callback();
     })
     .catch((err) => {
@@ -21,8 +21,8 @@ const mongoConnect = (callback) => {
 };
 
 const getDb = () => {
-  if (_db_client) {
-    return _db_client;
+  if (_db) {
+    return _db;
   }
   throw "No database found!";
 };

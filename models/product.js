@@ -11,9 +11,8 @@ class Product {
   }
 
   save() {
-    const client = getDb();
-    return client
-      .db('completeNodeJs')
+    const _db = getDb();
+    return _db
       .collection('products')
       .insertOne(this)
       .then(result => {
@@ -25,18 +24,17 @@ class Product {
   }
 
    static async fetchAll() {
-    const client = getDb();
-    return client
-      .db('completeNodeJs')
+    const _db = getDb();
+    return _db
       .collection('products')
       .find()
       .toArray()
       .then(products => {
-        console.log(products);
+        console.log("Fetch All products");
         return products;
       })
       .catch(err => {
-        console.log(err);
+        console.log("Error on fetch all products: ",err);
       });
   }
 }

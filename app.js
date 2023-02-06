@@ -43,8 +43,11 @@ app.use(shopRoutes);
 app.use(errorController.get404);
 
 mongoConnect(() => {
-    app.listen(3000);
-  });
+  app.listen(PORT, () => 
+  {
+      console.log(`Server is running on port: ${PORT}`);
+  })
+});
 
 // dbo.connectToServer(function (err) {
 //     if (err) {

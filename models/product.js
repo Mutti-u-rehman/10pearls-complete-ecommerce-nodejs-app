@@ -72,6 +72,20 @@ class Product {
         console.log("Error on fetch all products: ",err);
       });
   }
+
+  static async deleteById(prodId) {
+    const _db = getDb();
+    return _db
+      .collection('products')
+      .deleteOne({_id: new ObjectId(prodId)})
+      .then(result => {
+        console.log("Delete product Based on Id");
+        return result;
+      })
+      .catch(err => {
+        console.log("Error on Delelte product: ",err);
+      });
+  }
 }
 
 module.exports = Product;

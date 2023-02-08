@@ -37,8 +37,6 @@ app.use((req, res, next) => {
     .catch(err => {
         console.log("Error caused at middleware on getting user", err);
     });
-
-    next();
 });
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);

@@ -13,6 +13,8 @@ const errorController = require('./controllers/error');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
+const User = require('./models/user');
+
 const PORT = process.env.PORT || 3000;
 const app = express();
 
@@ -26,15 +28,15 @@ app.use(express.static(path.join(__dirname, 'public')));
  * Setting user available for all routes 
  */
 app.use((req, res, next) => {
-    // User
-    // .findByPk(1)
-    // .then(user => {
-    //     req.user = user;
-    //     next();
-    // })
-    // .catch(err => {
-    //     console.log("Error caused at middleware on getting user", err);
-    // });
+    User
+    .findById(1)
+    .then(user => {
+        req.user = user;
+        next();
+    })
+    .catch(err => {
+        console.log("Error caused at middleware on getting user", err);
+    });
 
     next();
 });

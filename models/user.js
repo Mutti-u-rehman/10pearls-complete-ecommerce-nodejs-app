@@ -3,10 +3,11 @@ const mongodb = require('mongodb');
 
 const ObjectId = mongodb.ObjectId;
 class User {
-  constructor(_username, _email, _cart) {
+  constructor(_username, _email, _cart, id) {
     this.username = _username;
     this.email = _email;
     this.cart = _cart;
+    this._id = id;
   }
 
   save() {
@@ -25,18 +26,15 @@ class User {
       };
     }
 
-    this.updateCart(this._id, updatedCart);
-  }
-
-  static async updateCart(id, updatedCart) {
     const _db = getDb();
     _db
       .collection("users")
       .updateOne(
-        { _id: new ObjectId(id) }, 
+        { _id: new ObjectId(this._id) }, 
         { $set: { cart: updatedCart }}
         );
   }
+
 
   static async findById(userId) {
     const _db = getDb();

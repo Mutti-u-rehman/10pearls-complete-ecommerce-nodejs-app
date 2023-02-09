@@ -3,10 +3,10 @@ const mongodb = require('mongodb');
 
 const ObjectId = mongodb.ObjectId;
 class User {
-  constructor(_username, _email, _cart, id) {
-    this.username = _username;
-    this.email = _email;
-    this.cart = _cart;
+  constructor(name, email, cart, id) {
+    this.name = name;
+    this.email = email;
+    this.cart = cart;
     this._id = id;
   }
 
@@ -16,16 +16,22 @@ class User {
   }
 
   addToCart(product) {
-    const cartProduct = this.cart.items.findIndex(
-      (cp) => cp._id === product._id
-    );
 
-    if (cartProduct === -1) {
-      const updateCart = {
-        items: [{ ...product, quantity: 1 }],
-      };
+    if (this.cart && this.cart.length > 0) {
+      const cartProduct = this.cart.items.findIndex(
+        (cp) => cp._id === product._id
+      );
+  
+      if (cartProduct === -1) {
+        const updateCart = {
+          items: [{ ...product, quantity: 1 }],
+        };
+      }
     }
 
+    const updatedCart = {
+      items: [{ ...product, quantity: 1 }],
+    };
     const _db = getDb();
     _db
       .collection("users")

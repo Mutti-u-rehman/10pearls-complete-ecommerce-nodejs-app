@@ -6,7 +6,7 @@ class User {
   constructor(name, email, cart, id) {
     this.name = name;
     this.email = email;
-    this.cart = cart;
+    this.cart = cart || {items:[]};
     this._id = id;
   }
 
@@ -24,11 +24,17 @@ class User {
    * @param {Product} product 
    */
   addToCart(product) {
+   
     const cartProductIndex = this.cart.items.findIndex(
-      (cp) => cp.productId === product._id);
+      (cp) => {
+        console.log(cp.productId, '===', product._id)
+        return cp.productId.toString() === product._id.toString()
+      });
    
     let newQuantity = 1;
     const updateCartItems = [...this.cart.items];
+
+    console.log(this.cart, updateCartItems);
 
     if (cartProductIndex >= 0) {
       newQuantity = this.cart.items[cartProductIndex].quantity + 1;
@@ -36,11 +42,13 @@ class User {
     } else {
       updateCartItems.push({ productId: new ObjectId(product._id), quantity: newQuantity })
     }
-    
 
+    
     const updatedCart = {
       items: updateCartItems,
     };
+    console.log(updatedCart);
+    
     const _db = getDb();
     _db
       .collection("users")
@@ -57,7 +65,7 @@ class User {
       .collection("users")
       .findOne({ _id: new ObjectId(userId) })
       .then((user) => {
-        console.log(user);
+        // console.log(user);
         return user;
       })
       .catch((err) => {

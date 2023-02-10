@@ -20,13 +20,18 @@ class User {
       (cp) => cp.productId === product._id);
    
     let newQuantity = 1;
+    const updateCartItems = [...this.cart.items];
+
     if (cartProductIndex >= 0) {
       newQuantity = this.cart.items[cartProductIndex].quantity + 1;
+      updateCartItems[cartProductIndex].quantity = newQuantity;
+    } else {
+      updateCartItems.push({ productId: new ObjectId(product._id), quantity: newQuantity })
     }
     
 
     const updatedCart = {
-      items: [{ productId: new ObjectId(product._id), quantity: newQuantity }],
+      items: updateCartItems,
     };
     const _db = getDb();
     _db

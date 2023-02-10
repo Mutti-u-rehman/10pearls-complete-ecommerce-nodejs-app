@@ -20,11 +20,29 @@ class User {
   }
 
   /**
-   * Return the cart
+   * Return the Products
    * @returns {items: Array<{productId, quantity }>}
    */
   getCart() {
-    return this.cart;
+    const _db = getDb();
+    const productIds = this.cart.items.map(cart => cart.productId);
+    return _db
+    .collection('products')
+    .find({_id: {$in: productIds}})
+    .toArray()
+    .then(products => {
+      return products.map(prod => {
+        return {
+          ...prod,
+          quantity: this.cart.items.find(cart => {
+            return cart.productId.toString() === prod._id.toString()
+          }).quantity
+        }
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   /**

@@ -62,9 +62,16 @@ exports.getCart = (req, res, next) => {
 
 exports.postCart = (req, res, next) => {
   const prodId = req.body.productId;
-  Product.findById(prodId).then(product => {
+
+  Product
+  .findById(prodId)
+  .then(product => {
+    // here user can use User instace to call 
+    // addToCart using current Id 
+    // as we set this user on each request routes
     return req.user.addToCart(product);
-  }). then(result => {
+  })
+  .then(result => {
     console.log(result);
   })
   // let fetchedCart;

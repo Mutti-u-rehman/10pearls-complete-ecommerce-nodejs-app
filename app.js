@@ -26,10 +26,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /**
  * Setting user available for all routes 
+ * Dummy user setup for now will get user based
+ * on Authentication later
  */
 app.use((req, res, next) => {
     User
-    .findById('63e3ed18467c7bfce44c0cac')
+    .findById('63e694d411a30a838a037997')
     .then(user => {
         req.user = new User(user.name, user.email, user.cart, user._id);
         next();

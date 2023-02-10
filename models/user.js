@@ -20,6 +20,14 @@ class User {
   }
 
   /**
+   * Return the cart
+   * @returns {items: Array<{productId, quantity }>}
+   */
+  getCart() {
+    return this.cart;
+  }
+
+  /**
    * Product added to the cart
    * @param {Product} product 
    */

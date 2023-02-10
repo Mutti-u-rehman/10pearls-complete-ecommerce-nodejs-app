@@ -10,6 +10,10 @@ class User {
     this._id = id;
   }
 
+  /**
+   * Saving one user in users database
+   * @returns Response of database
+   */
   save() {
     const _db = getDb();
     return _db.collection("users").insertOne(this);

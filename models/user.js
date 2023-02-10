@@ -15,6 +15,10 @@ class User {
     return _db.collection("users").insertOne(this);
   }
 
+  /**
+   * Product added to the cart
+   * @param {Product} product 
+   */
   addToCart(product) {
     const cartProductIndex = this.cart.items.findIndex(
       (cp) => cp.productId === product._id);

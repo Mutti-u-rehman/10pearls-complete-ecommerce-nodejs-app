@@ -16,18 +16,16 @@ class User {
   }
 
   addToCart(product) {
-
-    if (this.cart && this.cart.length > 0) {
-      const cartProduct = this.cart.items.findIndex(
-        (cp) => cp._id === product._id
-      );
-  
-      if (cartProduct === -1) {
-        const updateCart = {
-          items: [{ productId: new ObjectId(product._id), quantity: 1 }],
-        };
-      }
+    const cartProduct = this.cart.items.findIndex(
+      (cp) => cp.productId === product._id);
+   
+      
+    if (cartProduct === -1) {
+      const updateCart = {
+        items: [{ productId: new ObjectId(product._id), quantity: 1 }],
+      };
     }
+    
 
     const updatedCart = {
       items: [{ productId: new ObjectId(product._id), quantity: 1 }],

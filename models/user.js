@@ -22,7 +22,7 @@ class User {
   addOrder() {
     const _db = getDb();
     // getting product in the cart
-    this.getCart()
+    return this.getCart()
       .then((products) => {
 
         // create object to store orders in Order collection

@@ -24,7 +24,6 @@ class User {
     // getting product in the cart
     return this.getCart()
       .then((products) => {
-
         // create object to store orders in Order collection
         const order = {
           items: products,
@@ -33,9 +32,7 @@ class User {
             name: this.name,
           },
         };
-        return _db
-          .collection("orders")
-          .insertOne(order);
+        return _db.collection("orders").insertOne(order);
       })
       .then((result) => {
         // On save save order information remove cart items
@@ -53,7 +50,10 @@ class User {
 
   getOrders() {
     const _db = getDb();
-    return _db.collection("orders").find().toArray();
+    return _db
+      .collection("orders")
+      .find({ "user._id": new ObjectId(this._id) })
+      .toArray();
   }
 
   /**

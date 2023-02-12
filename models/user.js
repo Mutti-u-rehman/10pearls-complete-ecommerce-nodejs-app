@@ -53,14 +53,11 @@ class User {
    
     const cartProductIndex = this.cart.items.findIndex(
       (cp) => {
-        console.log(cp.productId, '===', product._id)
         return cp.productId.toString() === product._id.toString()
       });
    
     let newQuantity = 1;
     const updateCartItems = [...this.cart.items];
-
-    console.log(this.cart, updateCartItems);
 
     if (cartProductIndex >= 0) {
       newQuantity = this.cart.items[cartProductIndex].quantity + 1;
@@ -73,10 +70,9 @@ class User {
     const updatedCart = {
       items: updateCartItems,
     };
-    console.log(updatedCart);
     
     const _db = getDb();
-    _db
+    return _db
       .collection("users")
       .updateOne(
         { _id: new ObjectId(this._id) }, 
@@ -91,7 +87,6 @@ class User {
       .collection("users")
       .findOne({ _id: new ObjectId(userId) })
       .then((user) => {
-        // console.log(user);
         return user;
       })
       .catch((err) => {

@@ -46,6 +46,26 @@ class User {
   }
 
   /**
+   * Deleting Cart Item from database, 
+   * using filter to remove 1 items that we want to delete and 
+   * update the result of them again in database
+   * @param {Product ID} prodId 
+   * @returns result of the query in database
+   */
+  deleteItemFromCart(prodId) {
+    const _db = getDb();
+    const updatedCartItems = this.cart.items.filter(item => {
+      return item.productId.toString() !== prodId.toString();
+    });
+
+    return _db
+    .collection('users')
+    .updateOne(
+      {_id: new ObjectId(this._id)},
+      {$set: {cart: {items: updatedCartItems}}}
+    );
+  }
+  /**
    * Product added to the cart
    * @param {Product} product 
    */

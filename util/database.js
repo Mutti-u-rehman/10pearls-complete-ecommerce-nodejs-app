@@ -1,16 +1,31 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const mongodb = require("mongodb");
+const MongoClient = mongodb.MongoClient;
+const connectionString = process.env.ATLAS_URI;
 
-const uri = "mongodb+srv://CompleteNodeJS:SsNs9xxnW5gBVhbf@clustercompletenodejs.dwo4wft.mongodb.net/?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+let _db;
 
 const mongoConnect = (callback) => {
-    console.log("connecting");
-    MongoClient.connect(uri)
-        .then((client) => {
-            console.log("Connected");
-            callback(client);
-        })
-        .catch((err) => console.log(err));
-}
+  MongoClient.connect(connectionString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+    .then((client) => {
+      console.log("Connected!");
+      _db = client.db('completeNodeJs');
+      callback();
+    })
+    .catch((err) => {
+      console.log(err);
+      throw err;
+    });
+};
 
-module.exports = mongoConnect;
+const getDb = () => {
+  if (_db) {
+    return _db;
+  }
+  throw "No database found!";
+};
+
+exports.mongoConnect = mongoConnect;
+exports.getDb = getDb;

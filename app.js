@@ -1,9 +1,11 @@
+
+// const path = require('path');
+
 // Loads the configuration from config.env to process.env
 require('dotenv').config({ path: './config.env' });
 
-const path = require('path');
 const express = require('express');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 
 // get MongoDB driver connection
 // const dbo = require('./util/conn');
@@ -51,14 +53,3 @@ mongoConnect(() => {
   })
 });
 
-// dbo.connectToServer(function (err) {
-//     if (err) {
-//         console.error(err);
-//         process.exit();
-//     }
-
-//     // start express server
-//     app.listen(PORT, () => {
-//         console.log(`Server is running on port: ${PORT}`);
-//     })
-// });

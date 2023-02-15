@@ -46,13 +46,6 @@ app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 app.use(errorController.get404);
 
-// mongoConnect(() => {
-//   app.listen(PORT, () => 
-//   {
-//       console.log(`Server is running on port: ${PORT}`);
-//   })
-// });
-
 mongoose
   .connect(connectionString)
   .then((result) => {

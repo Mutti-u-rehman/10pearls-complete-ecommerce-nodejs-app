@@ -1,5 +1,5 @@
 
-// const path = require('path');
+const path = require('path');
 
 // Loads the configuration from config.env to process.env
 require('dotenv').config({ path: './config.env' });

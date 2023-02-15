@@ -1,11 +1,13 @@
 
-// const path = require('path');
+const path = require('path');
 
 // Loads the configuration from config.env to process.env
 require('dotenv').config({ path: './config.env' });
+const connectionString = process.env.ATLAS_URI;
 
 const express = require('express');
-// const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 // get MongoDB driver connection
 // const dbo = require('./util/conn');
@@ -46,10 +48,11 @@ app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 app.use(errorController.get404);
 
-mongoConnect(() => {
-  app.listen(PORT, () => 
-  {
-      console.log(`Server is running on port: ${PORT}`);
+mongoose
+  .connect(connectionString)
+  .then((result) => {
+    app.listen(3000);
   })
-});
-
+  .catch((err) => {
+    console.log(err);
+  });

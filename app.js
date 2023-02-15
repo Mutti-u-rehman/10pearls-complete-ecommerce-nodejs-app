@@ -1,8 +1,10 @@
+
+// const path = require('path');
+
 // Loads the configuration from config.env to process.env
 require('dotenv').config({ path: './config.env' });
 const connectionString = process.env.ATLAS_URI;
 
-const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -54,5 +56,3 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-
-

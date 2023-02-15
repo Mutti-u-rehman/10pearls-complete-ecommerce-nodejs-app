@@ -1,3 +1,4 @@
 node_modules
+secret.js
 config.env
 package-lock.json

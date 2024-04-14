@@ -57,23 +57,3 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-
-
-// mongoConnect(() => {
-//   app.listen(PORT, () => 
-//   {
-//       console.log(`Server is running on port: ${PORT}`);
-//   })
-// });
-
-// dbo.connectToServer(function (err) {
-//     if (err) {
-//         console.error(err);
-//         process.exit();
-//     }
-
-//     // start express server
-//     app.listen(PORT, () => {
-//         console.log(`Server is running on port: ${PORT}`);
-//     })
-// });

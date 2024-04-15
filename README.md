@@ -22,6 +22,8 @@ cd server
 npm install
 npm install -g nodemon
 nodemon server
+
+'we are using yarn instead of npm"
 ```
 
 ## Disclaimer
